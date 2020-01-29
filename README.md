@@ -14,21 +14,25 @@
 ## Quick Start
 	Let the fun begin! The first thing we need to do is install Angular CLI globally, 
 	so open the node.js command prompt and run this command:
-	```
-	npm install -g @angular/cli
-	```
-
-## Download 
- Using your git bash, you can download the angular8-app
- ```
- git clone https://github.com/sourcecode71/angular8-app.git
- ```
- Then use the command cd angular8-app
- 
- Run npm install for installing dependencies.
- 
- Run npm start for a dev server, You will be automatically navigated to http://localhost:4201/.
- 
- The app will automatically reload if you change any of the source files.
+		npm install -g @angular/cli
 	
 
+Okay, now we have our module bundler. This usually installs the module under your user folder. 
+An alias should not be necessary by default, but if you need it you can execute the next line:
+	alias ng="<UserFolder>/.npm/lib/node_modules/angular-cli/bin/ng"
+
+The next step is to create the new project. I will call it angular8-app. 
+First, we navigate to the folder under which we want to create the site, and then:
+	ng new angular8-app  
+	
+# First Build
+
+While you can test your new website just running ng serve --open,I do recommend testing 
+the site from your favorite web service.Why? Well, some issues can happen only in production, 
+and building the site with ng build is the closest way to approach this environment. 
+Then we can open the folder angular8-app with Visual Studio Code and run ng build on the terminal bash:
+
+![alt text](https://github.com/sourcecode71/images/issues/1#issue-556913181)
+
+
+	
