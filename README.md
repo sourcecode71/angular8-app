@@ -31,8 +31,7 @@ While you can test your new website just running ng serve --open,I do recommend 
 the site from your favorite web service.Why? Well, some issues can happen only in production, 
 and building the site with ng build is the closest way to approach this environment. 
 Then we can open the folder angular8-app with Visual Studio Code and run ng build on the terminal bash:
-
-![alt text](https://github.com/sourcecode71/images/issues/1#issue-556913181)
+  https://github.com/sourcecode71/images/issues/1#issue-556913181
 
 
 	
