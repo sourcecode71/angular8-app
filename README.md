@@ -8,10 +8,12 @@
 	*Angular Material
 	
 ## What Do You Need?
-	Let’s start by choosing the IDE. Of course, this is just my preference, and you can use the one you feel more comfortable with. 
+	Let’s start by choosing the IDE. Of course, this is just my preference, and you can use the one you feel 
+	more comfortable with. 
 	
 ## Quick Start
-	Let the fun begin! The first thing we need to do is install Angular CLI globally, so open the node.js command prompt and run this command:
+	Let the fun begin! The first thing we need to do is install Angular CLI globally, 
+	so open the node.js command prompt and run this command:
 	```
 	npm install -g @angular/cli
 	```
