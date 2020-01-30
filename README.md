@@ -59,7 +59,7 @@ In order to create a simple example, let’s create two pages: “User,” where
 
 Inside the app folder we will create a file called app-routing.modules.ts looking like this:
 
-![routing](https://user-images.githubusercontent.com/59535094/3453596-9314f100-4396-11ea-8cab-4b45a6147615.png)
+![routing](https://user-images.githubusercontent.com/59535094/3462270-ba26ef00-43a5-11ea-81bb-3862acaad4ec.png)
 
 It’s that simple: Just importing RouterModule and Routes from @angular/router, we can map the paths we want to implement. Here we are creating four paths:
 
@@ -84,6 +84,7 @@ Do you remember how we had the class AuthGuard implemented to set the routing co
 
 ![auth](https://user-images.githubusercontent.com/59535094/73460679-150b1700-43a3-11ea-8c22-24ba7f1e24cf.png)
 
+
 So every time we change the page the method canActivate will be called, which will check if the user is authenticated, and if not, we use our Router instance to redirect to the login page. But what is this new method on the Helper class? Under the helpers folder let’s create a file helpers.ts. Here we need to manage sessionStorage, where we will store the token we get from the back end.
 
 ##Note
@@ -91,7 +92,7 @@ So every time we change the page the method canActivate will be called, which wi
 
 Here is the helper class where I have checked the session 
 
-![session](https://user-images.githubusercontent.com/59535094/3461454-5ea83180-43a4-11ea-9d3b-15d1a8f44e04.png)
+![session](https://user-images.githubusercontent.com/59535094/3462214-9fed1100-43a5-11ea-9681-8e33191134ab.png)
 
 
 
