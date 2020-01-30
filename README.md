@@ -41,6 +41,60 @@ Then you can type the URL in the browser, and…done!
 The src Folder
  
  ![src](https://user-images.githubusercontent.com/59535094/73369817-6d77e100-42dd-11ea-8b50-79732599c73a.png)
+ 
+ My src folder is structured as follows: Inside the app folder we have components where we will 
+ create for each Angular component the css, ts, spec, and html files. We will also create a config folder to 
+ keep the site configuration, directives will have all our custom directives, helpers will house common code 
+ like the authentication manager, layout will contain the main components like body, head, and side panels, 
+ models keeps what will match with the back-end view models, and finally services will have the code for all 
+ the calls to the back end.
+
+ ## Now create a dashboard which is my home page.
+	Here has two sections. After authentication is done successfully view the authenticate part otherwise show unauthenticated part.
+
+#Routing
+Okay, now we have Angular Material helping us with the UI and a simple layout to start building our pages. But how can we navigate between pages?
+
+In order to create a simple example, let’s create two pages: “User,” where we can get a list of the existing users in the database, and “Dashboard,” a page where we can show some statistics.
+
+Inside the app folder we will create a file called app-routing.modules.ts looking like this:
+
+![routing](https://user-images.githubusercontent.com/59535094/3453596-9314f100-4396-11ea-8cab-4b45a6147615.png)
+
+It’s that simple: Just importing RouterModule and Routes from @angular/router, we can map the paths we want to implement. Here we are creating four paths:
+
+	./dashboard: Our home page
+	./login: The page where the user can authenticate
+	./users: Our first page where we want to list the users from the back end
+
+If the page not found or the wrong URL paste then redirects to error which pages not found. 
+
+Note that dashboard is our page by default, so if the user types the URL /, the page will redirect automatically to this page. Also, take a look at the canActivate parameter: Here we are creating a reference to the class AuthGuard, which will allow us to check if the user is logged in. If not, it redirects to the login page. In the next section, I will show you how to create this class.
+
+Now, all we need to do is create the menu. Remember in the layout section when we created the left-panel.component.html file to look like this?
+		
+		<a routerLink="/dashboard">Dashboard</a>
+        <a routerLink="/users">Users</a>
+
+Here is where our code meets reality. Now we can build the code and test it in the URL: You should be able to navigate from the Dashboard page to Users, but what happens if you type the URL our.site.url/users in the browser directly?
+
+#Authentication
+
+Do you remember how we had the class AuthGuard implemented to set the routing configuration? Every time we navigate to a different page we will use this class to verify if the user is authenticated with a token. If not, we’ll redirect automatically to the login page. The file for this is canActivateAuthGuard.ts—create it inside the 'shared/helpers' folder and have it look like this:
+
+![auth](https://user-images.githubusercontent.com/59535094/73460679-150b1700-43a3-11ea-8c22-24ba7f1e24cf.png)
+
+So every time we change the page the method canActivate will be called, which will check if the user is authenticated, and if not, we use our Router instance to redirect to the login page. But what is this new method on the Helper class? Under the helpers folder let’s create a file helpers.ts. Here we need to manage sessionStorage, where we will store the token we get from the back end.
+
+##Note
+	Regarding sessionStorage, you can also use cookies or localStorage, and the decision will depend on the behavior we want to implement. As the name suggests, sessionStorage is only available for the duration of the browser session, and is deleted when the tab or window is closed; it does, however, survive page reloads. If the data you are storing needs to be available on an ongoing basis, then localStorage is preferable to sessionStorage.
+
+Here is the helper class where I have checked the session 
+
+![session](https://user-images.githubusercontent.com/59535094/3461454-5ea83180-43a4-11ea-9d3b-15d1a8f44e04.png)
+
+
+
 
 
 
