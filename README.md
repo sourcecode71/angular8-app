@@ -59,7 +59,7 @@ In order to create a simple example, let’s create two pages: “User,” where
 
 Inside the app folder we will create a file called app-routing.modules.ts looking like this:
 
-![routing](https://user-images.githubusercontent.com/59535094/3453596-9314f100-4396-11ea-8cab-4b45a6147615.png)
+![routing](https://user-images.githubusercontent.com/59535094/73462866-a0d27280-43a6-11ea-926a-2b832c958e6a.png)
 
 It’s that simple: Just importing RouterModule and Routes from @angular/router, we can map the paths we want to implement. Here we are creating four paths:
 
