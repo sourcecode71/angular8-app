@@ -94,6 +94,76 @@ Here is the helper class where I have checked the session
 
 ![session](https://user-images.githubusercontent.com/59535094/73462214-9fed1100-43a5-11ea-9681-8e33191134ab.png)
 
+# Services
+
+At this point we are navigating to different pages, authenticating our client side, and rendering a very simple layout. But how we can get data from the back end? I strongly recommend doing all back-end access from service classes in particular. Our first service will be inside the services folder, called token.service.ts
+
+![token-service ts](https://user-images.githubusercontent.com/59535094/73541103-cec5be80-445b-11ea-8697-9dfa651e532a.png)
+
+The first call to the back end is a POST call to the token API. The token API does not need the token string in the header, but what happen if we call another endpoint? As you can see here, TokenService (and service classes in general) inherit from the BaseService class. Let’s take a look at this:
+  import { Injectable } from '@angular/core';
+import { Helpers } from '../shared/helpers/helpers';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable} from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class BaseService {
+
+  constructor(private helper: Helpers) { }
+
+    public extractData(res: Response) {
+
+        let body = res.json();
+       
+        return body || {};
+      }
+
+      public handleError(error: Response | any) {
+
+        let errMsg: string;
+
+        if (error instanceof Response) {
+
+          const body = error.json() || '';
+          const err = body || JSON.stringify(body);
+
+          errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+
+        } else {
+          errMsg = error.message ? error.message : error.toString();
+        }
+
+        console.error(errMsg);
+        return Observable.throw(errMsg);
+    }
+
+    public header() {
+
+      let header = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      if(this.helper.isAuthenticated()) {
+        header = header.append('Authorization', 'Bearer ' + this.helper.getToken()); 
+      }
+      
+      return { headers: header };
+
+    }
+
+    public setToken(data:any) {
+      this.helper.setToken(data);
+    }
+
+    public failToken(error: Response | any) {
+      this.helper.failToken();
+      return this.handleError(Response);
+    }
+
+}
+
+
+
 
 
 
