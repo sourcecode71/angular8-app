@@ -112,7 +112,7 @@ The first call to the back end is a POST call to the token API. The token API do
     })
     export class BaseService {
 
-  constructor(private helper: Helpers) { }
+    constructor(private helper: Helpers) { }
 
     public extractData(res: Response) {
 
@@ -161,13 +161,48 @@ The first call to the back end is a POST call to the token API. The token API do
       return this.handleError(Response);
     }
 
-}
+   }
 
+So every time we make an HTTP call, we implement the header of the request just using super.header. If the token is in localStorage then it will be appended inside the header, but if not, we will just set the JSON format. Another thing we can see here is what happens if authentication fails.
 
+The login component will call the service class and the service class will call the back end. Once we have the token, the helper class will manage the token, and now we are ready to get the list of users from our database.
 
+To get data from the database, first be sure we match the model classes with the back-end view models in our response.
 
+In user.ts:
 
+   export class User {
 
+      id: number;
+      name: string;
 
+    }
+    
+ ## And we can create now the user.service.ts file:
+ 
+      import { Injectable } from '@angular/core';
+      import { HttpClient } from '@angular/common/http';
+      import { Observable} from 'rxjs';
+      import { catchError} from 'rxjs/operators';
+      import { BaseService } from './base.service';
+      import { User } from '../models/user';
+      import { AppConfig } from '../config/config';
+      import { Helpers } from '../shared/helpers/helpers';
 
-	
+      @Injectable({
+        providedIn: 'root'
+      })
+      export class UserService extends BaseService {
+
+        private pathAPI = this.config.setting['PathAPI'];
+
+        constructor(private http: HttpClient, private config: AppConfig, helper: Helpers) { super(helper); }
+
+        /** GET heroes from the server */
+
+        getUsers (): Observable<User[]> {
+          return <Observable<User[]>> this.http.get(this.pathAPI + 'user', super.header()).pipe(
+          catchError(super.handleError));
+        }
+
+      }
