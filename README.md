@@ -88,7 +88,8 @@ Do you remember how we had the class AuthGuard implemented to set the routing co
 So every time we change the page the method canActivate will be called, which will check if the user is authenticated, and if not, we use our Router instance to redirect to the login page. But what is this new method on the Helper class? Under the helpers folder let’s create a file helpers.ts. Here we need to manage sessionStorage, where we will store the token we get from the back end.
 
 ##Note
-	Regarding sessionStorage, you can also use cookies or localStorage, and the decision will depend on the behavior we want to implement. As the name suggests, sessionStorage is only available for the duration of the browser session, and is deleted when the tab or window is closed; it does, however, survive page reloads. If the data you are storing needs to be available on an ongoing basis, then localStorage is preferable to sessionStorage.
+
+Regarding sessionStorage, you can also use cookies or localStorage, and the decision will depend on the behavior we want to implement. As the name suggests, sessionStorage is only available for the duration of the browser session, and is deleted when the tab or window is closed; it does, however, survive page reloads. If the data you are storing needs to be available on an ongoing basis, then localStorage is preferable to sessionStorage.
 
 Here is the helper class where I have checked the session 
 
