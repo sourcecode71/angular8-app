@@ -50,9 +50,10 @@ The src Folder
  the calls to the back end.
 
  ## Now create a dashboard which is my home page.
-	Here has two sections. After authentication is done successfully view the authenticate part otherwise show unauthenticated part.
+	Here has two sections. After authentication is done successfully view the authenticate 
+  part otherwise show unauthenticated part.
 
-#Routing
+## Routing
 Okay, now we have Angular Material helping us with the UI and a simple layout to start building our pages. But how can we navigate between pages?
 
 In order to create a simple example, let’s create two pages: “User,” where we can get a list of the existing users in the database, and “Dashboard,” a page where we can show some statistics.
@@ -78,7 +79,7 @@ Now, all we need to do is create the menu. Remember in the layout section when w
 
 Here is where our code meets reality. Now we can build the code and test it in the URL: You should be able to navigate from the Dashboard page to Users, but what happens if you type the URL our.site.url/users in the browser directly?
 
-#Authentication
+# Authentication
 
 Do you remember how we had the class AuthGuard implemented to set the routing configuration? Every time we navigate to a different page we will use this class to verify if the user is authenticated with a token. If not, we’ll redirect automatically to the login page. The file for this is canActivateAuthGuard.ts—create it inside the 'shared/helpers' folder and have it look like this:
 
@@ -87,7 +88,7 @@ Do you remember how we had the class AuthGuard implemented to set the routing co
 
 So every time we change the page the method canActivate will be called, which will check if the user is authenticated, and if not, we use our Router instance to redirect to the login page. But what is this new method on the Helper class? Under the helpers folder let’s create a file helpers.ts. Here we need to manage sessionStorage, where we will store the token we get from the back end.
 
-##Note
+## Note
 
 Regarding sessionStorage, you can also use cookies or localStorage, and the decision will depend on the behavior we want to implement. As the name suggests, sessionStorage is only available for the duration of the browser session, and is deleted when the tab or window is closed; it does, however, survive page reloads. If the data you are storing needs to be available on an ongoing basis, then localStorage is preferable to sessionStorage.
 
