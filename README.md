@@ -101,15 +101,16 @@ At this point we are navigating to different pages, authenticating our client si
 ![token-service ts](https://user-images.githubusercontent.com/59535094/73541103-cec5be80-445b-11ea-8697-9dfa651e532a.png)
 
 The first call to the back end is a POST call to the token API. The token API does not need the token string in the header, but what happen if we call another endpoint? As you can see here, TokenService (and service classes in general) inherit from the BaseService class. Let’s take a look at this:
-  import { Injectable } from '@angular/core';
-import { Helpers } from '../shared/helpers/helpers';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable} from 'rxjs';
+    
+    import { Injectable } from '@angular/core';
+    import { Helpers } from '../shared/helpers/helpers';
+    import { HttpClient, HttpHeaders } from '@angular/common/http';
+    import { Observable} from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class BaseService {
+    @Injectable({
+      providedIn: 'root'
+    })
+    export class BaseService {
 
   constructor(private helper: Helpers) { }
 
