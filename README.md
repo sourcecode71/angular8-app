@@ -206,3 +206,5 @@ In user.ts:
         }
 
       }
+      
+      Please wait for next deployment in Angular 10
